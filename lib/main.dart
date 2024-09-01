@@ -16,8 +16,6 @@ class NutrientFetcher extends StatefulWidget {
 class _NutrientFetcherState extends State<NutrientFetcher> {
   final TextEditingController _queryController = TextEditingController();
   List<Map<String, dynamic>> _ingredientData = [];
-
-  // Mapping of API keys to user-friendly labels
   final Map<String, String> _fieldLabels = {
     "name": "Name",
     "calories": "Calories",
@@ -37,7 +35,7 @@ class _NutrientFetcherState extends State<NutrientFetcher> {
     final url = Uri.parse('https://api.api-ninjas.com/v1/nutrition?query=$query');
     final response = await http.get(
       url,
-      headers: {'x-api-key': '+U39uMqojAeMzsyGMpxG/w==okaLrT6XXMzxJFGt'}, // Replace with your actual API key
+      headers: {'x-api-key': '+U39uMqojAeMzsyGMpxG/w==okaLrT6XXMzxJFGt'},
     );
 
     print('Request URL: ${url.toString()}');
@@ -101,7 +99,7 @@ class _NutrientFetcherState extends State<NutrientFetcher> {
                 children: _ingredientData.map((data) {
                   return Column(
                     children: data.entries.map((entry) {
-                      final label = _fieldLabels[entry.key] ?? entry.key; // Fallback to the original key if no label is found
+                      final label = _fieldLabels[entry.key] ?? entry.key;
                       return buildIngredientCard(label, entry.value);
                     }).toList(),
                   );
